@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5ef">
+  <meta name="description" content="Útiles de oficina bonitos y funcionales para hacer espacio a tus ideas.">
+  <title>Casa Papel | Útiles para buenas ideas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f5ef;
+      --ink: #202920;
+      --muted: #72766d;
+      --green: #345b43;
+      --green-dark: #254532;
+      --orange: #d8754d;
+      --line: #e4e2d9;
+      --white: #fffefa;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    .announcement { background: var(--green); color: white; text-align: center; padding: 10px 16px; font-size: 12px; letter-spacing: .04em; }
+    .site-header { height: 78px; display: flex; align-items: center; justify-content: space-between; padding: 0 7.2%; border-bottom: 1px solid var(--line); background: var(--paper); }
+    .brand { font-family: var(--serif); font-size: 27px; font-weight: 700; letter-spacing: -.03em; }
+    .brand span { color: var(--orange); }
+    .main-nav { display: flex; gap: 34px; align-items: center; color: #555a51; font-size: 13px; }
+    .main-nav a:hover, .main-nav a:focus-visible { color: var(--orange); }
+    .header-actions { display: flex; align-items: center; gap: 18px; }
+    .icon-button { border: 0; background: transparent; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; padding: 8px 0; font-size: 13px; }
+    .cart-count { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: white; background: var(--green); font-size: 11px; }
+    .hero { min-height: 470px; margin: 28px 4.2% 68px; position: relative; overflow: hidden; background: #e6e4d9; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 53%; filter: brightness(.77); }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(21, 38, 27, .66), rgba(21, 38, 27, .08) 74%); }
+    .hero-copy { position: relative; z-index: 1; color: white; width: min(520px, 88%); padding: 90px 0 84px 9%; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 10px; font-weight: 700; }
+    .hero h1 { font: 600 clamp(42px, 5vw, 66px)/1.04 var(--serif); letter-spacing: -.035em; margin: 20px 0 16px; }
+    .hero p { max-width: 380px; color: rgba(255,255,255,.88); line-height: 1.7; font-size: 14px; margin: 0 0 27px; }
+    .primary-link { display: inline-flex; align-items: center; gap: 15px; padding: 13px 18px; color: var(--ink); background: #fffefa; font-size: 12px; font-weight: 700; transition: background .2s, transform .2s; }
+    .primary-link:hover { background: white; transform: translateY(-2px); }
+    .primary-link span { font-size: 17px; line-height: 10px; }
+    .catalog { padding: 0 7.2% 84px; scroll-margin-top: 28px; }
+    .section-top { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 25px; }
+    .section-top h2 { font: 600 36px/1.1 var(--serif); letter-spacing: -.025em; margin: 9px 0 0; }
+    .section-kicker { color: var(--orange); }
+    .tools { display: flex; align-items: center; gap: 18px; }
+    .search-wrap { position: relative; }
+    .search-wrap svg { position: absolute; top: 11px; left: 12px; color: #797d74; pointer-events: none; }
+    .search { width: 205px; height: 38px; border: 1px solid #dcdad1; background: transparent; padding: 0 12px 0 37px; outline: none; font-size: 12px; }
+    .search:focus { border-color: var(--green); }
+    .sort-select { height: 38px; border: 1px solid #dcdad1; background: transparent; padding: 0 28px 0 11px; color: #454a43; font-size: 12px; }
+    .category-list { display: flex; gap: 9px; overflow-x: auto; padding: 0 0 10px; margin-bottom: 17px; scrollbar-width: thin; }
+    .category { white-space: nowrap; border: 1px solid #dbd9d0; padding: 9px 15px; background: transparent; cursor: pointer; font-size: 11px; transition: .18s ease; }
+    .category:hover, .category.active { border-color: var(--green); color: white; background: var(--green); }
+    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px 20px; }
+    .product { min-width: 0; animation: appear .45s both; }
+    .product-image { display: block; position: relative; width: 100%; aspect-ratio: 1 / 1.08; border: 0; padding: 0; overflow: hidden; cursor: zoom-in; background: #e9e6dc; }
+    .product-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+    .product-image:hover img, .product-image:focus-visible img { transform: scale(1.055); }
+    .product-image::after { content: "Ver producto ↗"; position: absolute; bottom: 12px; right: 12px; padding: 8px 10px; color: var(--ink); background: var(--white); opacity: 0; transform: translateY(5px); transition: .2s; font-size: 10px; }
+    .product-image:hover::after, .product-image:focus-visible::after { opacity: 1; transform: translateY(0); }
+    .tag { position: absolute; top: 12px; left: 12px; padding: 6px 9px; background: var(--white); font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .product-meta { display: flex; justify-content: space-between; gap: 12px; padding-top: 12px; }
+    .product-name { font-size: 13px; font-weight: 600; }
+    .product-category { color: var(--muted); margin-top: 5px; font-size: 10px; }
+    .price { font-size: 12px; white-space: nowrap; font-weight: 600; }
+    .add-button { display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 13px; min-height: 36px; border: 1px solid #c8c9bf; background: transparent; cursor: pointer; font-size: 11px; transition: .18s; }
+    .add-button:hover { color: white; background: var(--green); border-color: var(--green); }
+    .empty-state { grid-column: 1/-1; padding: 60px 10px; color: var(--muted); text-align: center; font-size: 14px; }
+    .note-band { display: grid; grid-template-columns: 1fr 1fr; min-height: 230px; background: #e9e7dc; }
+    .note-copy { padding: 46px 12%; align-self: center; }
+    .note-copy h2 { font: 600 30px/1.18 var(--serif); margin: 12px 0; }
+    .note-copy p { color: #5e635a; font-size: 12px; line-height: 1.7; max-width: 390px; }
+    .note-image { width: 100%; height: 100%; min-height: 230px; object-fit: cover; }
+    footer { display: flex; align-items: center; justify-content: space-between; padding: 30px 7.2%; color: #64685f; font-size: 11px; }
+    .modal-backdrop { position: fixed; inset: 0; z-index: 5; display: none; place-items: center; padding: 20px; background: rgba(24, 31, 25, .55); }
+    .modal-backdrop.open { display: grid; }
+    .modal { position: relative; display: grid; grid-template-columns: 1fr 1fr; width: min(760px, 100%); background: var(--white); animation: appear .2s both; }
+    .modal img { width: 100%; height: 100%; min-height: 350px; object-fit: cover; background: #e9e6dc; }
+    .modal-info { align-self: center; padding: 42px; }
+    .modal-info h2 { font: 600 30px/1.1 var(--serif); margin: 12px 0; }
+    .modal-info p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .modal-price { display: block; margin: 20px 0; font-weight: 700; }
+    .modal-close { position: absolute; z-index: 1; top: 12px; right: 12px; border: 0; background: var(--white); width: 34px; height: 34px; cursor: pointer; font-size: 20px; }
+    .toast { position: fixed; z-index: 7; right: 22px; bottom: 22px; color: white; background: var(--green-dark); padding: 13px 18px; font-size: 12px; opacity: 0; transform: translateY(8px); transition: .2s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @keyframes appear { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 850px) {
+      .site-header { padding: 0 5%; }
+      .main-nav { gap: 18px; }
+      .hero { margin: 18px 3% 52px; min-height: 420px; }
+      .catalog { padding-right: 5%; padding-left: 5%; }
+      .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      .announcement { font-size: 10px; }
+      .site-header { height: 66px; }
+      .brand { font-size: 24px; }
+      .main-nav { display: none; }
+      .header-actions { gap: 13px; }
+      .icon-button .cart-label { display: none; }
+      .hero { min-height: 420px; margin: 12px 12px 48px; }
+      .hero img { object-position: 58% center; }
+      .hero-copy { padding: 80px 8% 65px; }
+      .hero h1 { font-size: 47px; }
+      .section-top { align-items: start; flex-direction: column; gap: 18px; }
+      .section-top h2 { font-size: 32px; }
+      .tools { width: 100%; gap: 9px; }
+      .search-wrap { flex: 1; }
+      .search { width: 100%; }
+      .sort-select { max-width: 130px; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 27px 12px; }
+      .product-image { aspect-ratio: 1 / 1.12; }
+      .product-meta { flex-direction: column; gap: 5px; }
+      .note-band { grid-template-columns: 1fr; }
+      .note-copy { padding: 38px 8%; }
+      .note-image { max-height: 230px; }
+      footer { gap: 12px; align-items: start; flex-direction: column; padding: 26px 5%; }
+      .modal { grid-template-columns: 1fr; max-width: 420px; max-height: 90vh; overflow: auto; }
+      .modal img { height: 240px; min-height: 0; }
+      .modal-info { padding: 25px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">Envío gratis en compras desde $35.000 · Despachamos a todo el país</div>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Casa Papel, inicio">casa<span>.</span>papel</a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#catalogo">Tienda</a>
+      <a href="#catalogo" data-filter-link="Escritura">Escritura</a>
+      <a href="#catalogo" data-filter-link="Cuadernos">Cuadernos</a>
+      <a href="#nosotros">Nuestra casa</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="cart-button" aria-label="Ver carrito">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 2-1.6L22 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg>
+        <span class="cart-label">Mi bolsa</span><span class="cart-count" id="cart-count" aria-live="polite">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-label="Útiles para tus ideas">
+      <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85" alt="Espacio de trabajo luminoso con escritorio de madera y plantas">
+      <div class="hero-copy">
+        <span class="eyebrow">Pequeñas cosas, grandes ideas</span>
+        <h1>Un escritorio<br>que inspira.</h1>
+        <p>Objetos cotidianos elegidos con cariño para acompañar todo lo que tienes por hacer.</p>
+        <a class="primary-link" href="#catalogo">Explorar la tienda <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="catalog" id="catalogo">
+      <div class="section-top">
+        <div><span class="eyebrow section-kicker">Selección de temporada</span><h2>Favoritos de escritorio</h2></div>
+        <div class="tools">
+          <label class="search-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg>
+            <input class="search" id="search" type="search" placeholder="Buscar un producto" aria-label="Buscar productos">
+          </label>
+          <select class="sort-select" id="sort" aria-label="Ordenar productos">
+            <option value="featured">Destacados</option>
+            <option value="price-asc">Precio: menor</option>
+            <option value="price-desc">Precio: mayor</option>
+            <option value="name">Nombre: A-Z</option>
+          </select>
+        </div>
+      </div>
+      <div class="category-list" id="categories" aria-label="Filtrar por categoría">
+        <button class="category active" data-category="Todos" aria-pressed="true">Todo</button>
+        <button class="category" data-category="Escritura" aria-pressed="false">Escritura</button>
+        <button class="category" data-category="Cuadernos" aria-pressed="false">Cuadernos</button>
+        <button class="category" data-category="Organización" aria-pressed="false">Organización</button>
+        <button class="category" data-category="Papel" aria-pressed="false">Papel</button>
+      </div>
+      <div class="product-grid" id="product-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="note-band" id="nosotros">
+      <div class="note-copy">
+        <span class="eyebrow section-kicker">Hecho para acompañarte</span>
+        <h2>El ritual de poner<br>las ideas en papel.</h2>
+        <p>Creemos que un buen lápiz, una hoja en blanco y un poco de calma pueden cambiar el día. Por eso elegimos cada objeto pensando en su uso, su tacto y su historia.</p>
+      </div>
+      <img class="note-image" src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=85" alt="Manos escribiendo ideas en un cuaderno">
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#inicio">casa<span>.</span>papel</a><span>Objetos bonitos para días productivos.</span><span>© 2025 Casa Papel</span></footer>
+
+  <div class="modal-backdrop" id="product-modal" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+      <img id="modal-image" src="" alt="">
+      <div class="modal-info">
+        <span class="eyebrow section-kicker" id="modal-category"></span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+        <strong class="modal-price" id="modal-price"></strong>
+        <button class="add-button" id="modal-add">Agregar a mi bolsa</button>
+      </div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    const products = [
+      { id: 1, name: "Cuaderno Botánica", category: "Cuadernos", price: 8900, tag: "Más querido", image: "photo-1544816155-12df9643f363", description: "Tapa suave de inspiración botánica, papel ahuesado de 90 g y 120 páginas para apuntes, listas y proyectos." },
+      { id: 2, name: "Set de lápices color", category: "Escritura", price: 6400, tag: "", image: "photo-1513364776144-60967b0f800f", description: "Una selección de lápices de colores intensos y suaves al trazo, ideal para bocetos, notas y momentos creativos." },
+      { id: 3, name: "Agenda Semana Clara", category: "Cuadernos", price: 12900, tag: "Nuevo", image: "photo-1517842645767-c639042777db", description: "Planificador semanal sin fechas, con espacio para prioridades, pendientes y pequeñas ideas que no quieres olvidar." },
+      { id: 4, name: "Lápiz de madera", category: "Escritura", price: 1800, tag: "", image: "photo-1455390582262-044cdead277a", description: "Lápiz de grafito HB de madera natural, cómodo en la mano y listo para acompañar cada primer borrador." },
+      { id: 5, name: "Notas adhesivas Pastel", category: "Papel", price: 3200, tag: "", image: "photo-1452860606245-08befc0ff44b", description: "Notas reposicionables en tonos suaves para marcar páginas, dejar recordatorios y ordenar tus ideas a la vista." },
+      { id: 6, name: "Organizador de mesa", category: "Organización", price: 11500, tag: "Favorito", image: "photo-1494438639946-1ebd1d20bf85", description: "Una forma sencilla de mantener tus herramientas a mano y despejar espacio para lo que importa." },
+      { id: 7, name: "Marcadores Tierra", category: "Escritura", price: 7600, tag: "", image: "photo-1513364776144-60967b0f800f", description: "Set de marcadores de punta versátil y colores inspirados en la naturaleza, para subrayar y dibujar." },
+      { id: 8, name: "Papel para notas", category: "Papel", price: 4900, tag: "", image: "photo-1517842645767-c639042777db", description: "Hojas lisas de papel de alta calidad para bocetos rápidos, listas diarias o una carta escrita a mano." }
+    ];
+
+    const grid = document.querySelector("#product-grid");
+    const searchInput = document.querySelector("#search");
+    const sortSelect = document.querySelector("#sort");
+    const cartCount = document.querySelector("#cart-count");
+    const modal = document.querySelector("#product-modal");
+    const toast = document.querySelector("#toast");
+    let activeCategory = "Todos";
+    let cart = 0;
+    let toastTimer;
+
+    const formatPrice = (price) => new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 }).format(price);
+    const imageUrl = (image, width = 700) => `https://images.unsplash.com/${image}?auto=format&fit=crop&w=${width}&q=80`;
+
+    function renderProducts() {
+      const query = searchInput.value.trim().toLocaleLowerCase("es");
+      let visible = products.filter((product) => {
+        const matchesCategory = activeCategory === "Todos" || product.category === activeCategory;
+        const matchesQuery = `${product.name} ${product.category}`.toLocaleLowerCase("es").includes(query);
+        return matchesCategory && matchesQuery;
+      });
+      if (sortSelect.value === "price-asc") visible.sort((a, b) => a.price - b.price);
+      if (sortSelect.value === "price-desc") visible.sort((a, b) => b.price - a.price);
+      if (sortSelect.value === "name") visible.sort((a, b) => a.name.localeCompare(b.name, "es"));
+      grid.innerHTML = visible.length ? visible.map((product) => `
+        <article class="product">
+          <button class="product-image" data-open="${product.id}" aria-label="Ver detalles de ${product.name}">
+            <img src="${imageUrl(product.image)}" alt="${product.name}" loading="lazy">
+            ${product.tag ? `<span class="tag">${product.tag}</span>` : ""}
+          </button>
+          <div class="product-meta">
+            <div><div class="product-name">${product.name}</div><div class="product-category">${product.category}</div></div>
+            <span class="price">${formatPrice(product.price)}</span>
+          </div>
+          <button class="add-button" data-add="${product.id}">Agregar a mi bolsa</button>
+        </article>`).join("") : `<p class="empty-state">No encontramos productos con esa búsqueda.</p>`;
+    }
+
+    function addToCart(product) {
+      cart += 1;
+      cartCount.textContent = cart;
+      toast.textContent = `${product.name} se agregó a tu bolsa`;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function openProduct(product) {
+      document.querySelector("#modal-image").src = imageUrl(product.image, 1000);
+      document.querySelector("#modal-image").alt = product.name;
+      document.querySelector("#modal-category").textContent = product.category;
+      document.querySelector("#modal-title").textContent = product.name;
+      document.querySelector("#modal-description").textContent = product.description;
+      document.querySelector("#modal-price").textContent = formatPrice(product.price);
+      document.querySelector("#modal-add").dataset.add = product.id;
+      modal.classList.add("open");
+      document.querySelector("#modal-close").focus();
+    }
+
+    grid.addEventListener("click", (event) => {
+      const addButton = event.target.closest("[data-add]");
+      if (addButton) {
+        const product = products.find((item) => item.id === Number(addButton.dataset.add));
+        if (product) addToCart(product);
+        return;
+      }
+      const imageButton = event.target.closest("[data-open]");
+      if (imageButton) openProduct(products.find((item) => item.id === Number(imageButton.dataset.open)));
+    });
+
+    document.querySelector("#modal-add").addEventListener("click", (event) => {
+      const product = products.find((item) => item.id === Number(event.currentTarget.dataset.add));
+      if (product) addToCart(product);
+      modal.classList.remove("open");
+    });
+    document.querySelector("#modal-close").addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (event) => { if (event.target === modal) modal.classList.remove("open"); });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") modal.classList.remove("open"); });
+    document.querySelector("#categories").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      activeCategory = button.dataset.category;
+      document.querySelectorAll(".category").forEach((item) => {
+        const selected = item === button;
+        item.classList.toggle("active", selected);
+        item.setAttribute("aria-pressed", String(selected));
+      });
+      renderProducts();
+    });
+    document.querySelectorAll("[data-filter-link]").forEach((link) => link.addEventListener("click", () => {
+      activeCategory = link.dataset.filterLink;
+      document.querySelectorAll(".category").forEach((item) => {
+        const selected = item.dataset.category === activeCategory;
+        item.classList.toggle("active", selected);
+        item.setAttribute("aria-pressed", String(selected));
+      });
+      renderProducts();
+    }));
+    searchInput.addEventListener("input", renderProducts);
+    sortSelect.addEventListener("change", renderProducts);
+    document.querySelector("#cart-button").addEventListener("click", () => {
+      toast.textContent = cart ? `Tienes ${cart} ${cart === 1 ? "producto" : "productos"} en tu bolsa` : "Tu bolsa está vacía por ahora";
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+    });
+    renderProducts();
+  </script>
+</body>
+</html>
